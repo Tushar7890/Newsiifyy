@@ -3,7 +3,10 @@ import NewsItem from "./NewsItem";
 import Spinner from "./spinner";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
+// import dotenv from "dotenv";
 
+let APIKEY = process.env.REACT_APP_NEWS_API_KEY;
+console.log(process.env.REACT_APP_NEWS_API_KEY);
 export default class News extends Component {
   static defaultProps = {
     country: "in",
@@ -26,7 +29,8 @@ export default class News extends Component {
   }
   //run after render component
   async componentDidMount() {
-    let url1 = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=00a542e00a7e47ac85ed99fa8f8e3d71&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+    // require('dotenv').config()
+    let url1 = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${APIKEY}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
     // this.setState({ loading: true });
     let data = await fetch(url1);
     let parsedData = await data.json();
@@ -87,9 +91,7 @@ export default class News extends Component {
     }
     let url1 = `https://newsapi.org/v2/top-headlines?country=${
       this.props.country
-    }&category=${
-      this.props.category
-    }&apiKey=00a542e00a7e47ac85ed99fa8f8e3d71&page=${
+    }&category=${this.props.category}&apiKey=${APIKEY}=${
       this.state.page + 1
     }&pageSize=${this.props.pageSize}`;
     this.setState({ page: this.state.page + 1 });
