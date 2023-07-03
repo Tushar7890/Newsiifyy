@@ -6,7 +6,10 @@ export default class NewsItem extends Component {
       this.props;
     return (
       <>
-        <div className="card my-5">
+        <div
+          className="card my-5"
+          style={{ borderStyle: "none", borderRadius: "20px" }}
+        >
           <span
             className="badge rounded-pill"
             style={{
@@ -19,10 +22,10 @@ export default class NewsItem extends Component {
               fontSize: "0.8rem",
               borderRadius: "50%",
               color: "white",
-              backgroundColor: "red"
+              backgroundColor: "red",
             }}
           >
-            {source.slice(0, 12)}
+            {source.slice(0, 14)}
           </span>
           <img
             src={
@@ -31,17 +34,23 @@ export default class NewsItem extends Component {
                 : imageUrl
             }
             className="card-img-top"
-            alt="..."
+            alt="NoImage"
+            style={{ height: "14rem", borderRadius: "20px" }}
           />
-          <div className="card-body">
+          <div
+            className="card-body"
+            style={{ backgroundColor: "grey", color: "#FFFDD0" }}
+          >
             <h5 className="card-title">{title}</h5>
-            <p className="card-text">{description}</p>
+            <p className="card-text">
+              {description == null ? "nj" : description}
+            </p>
             <div className="container">
               <a href={newsUrl} className="btn btn-dark">
                 View More...
               </a>
               <p>
-                By {!author ? "Mark" : author} on : {time.slice(0, 10)} ,
+                {!author ? "Mark" : author} on : {time.slice(0, 10)} ,
                 {time.slice(12, 19)}
               </p>
             </div>
